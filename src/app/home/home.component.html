@@ -1,0 +1,25 @@
+<mat-card>
+  <mat-card-content *ngIf="konektovaniEntiteti?.length == 0">
+  <button mat-icon-button routerLink="/list">
+    <mat-icon>add_circle</mat-icon>
+  </button>
+  <mat-label>Connect entity </mat-label>
+</mat-card-content>
+
+
+  <mat-card-content *ngIf="konektovaniEntiteti?.length > 0">
+    <button mat-icon-button routerLink="/list">
+      <mat-icon>add_circle</mat-icon>
+    </button>
+    <mat-label>Entities connected ({{konektovaniEntiteti.length}}) </mat-label>
+    <mat-list>
+      <mat-list-item *ngFor="let entitet of konektovaniEntiteti">
+        <span class = "entitetText">{{entitet.name}} <br><span class = "grey"> {{entitet.desc}} </span></span>
+
+        <button mat-icon-button class ="iconBtn" (click)="delete(entitet.id)"> <mat-icon matListIcon>delete</mat-icon> </button>
+        <mat-divider></mat-divider>
+      </mat-list-item>
+    </mat-list>
+
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,18 @@
+mat-icon{
+  font-size: 21px;
+  position: relative;
+  top: 10px;
+}
+mat-card-footer{
+  padding-bottom: 15px;
+}
+.backBtn{
+  margin-left: 20px;
+}
+#connectBtn{
+  float: right;
+  margin-right: 30px;
+}
+.grey{
+  color: #C0BEC0;
+}

@@ -1,0 +1,21 @@
+<mat-card>
+  <mat-card-content>
+    <mat-icon>search</mat-icon>
+    <mat-form-field class="example-form-field">
+
+      <input id = "myInput" class="searchEntities" matInput placeholder="Search entity" [(ngModel)] = "searchTerm" (ngModelChange) = "filter()">
+
+    </mat-form-field>
+    <mat-selection-list #entitetiLista [(ngModel)]="selektovaniEntiteti">
+      <mat-list-option *ngFor="let entitet of listItems" [value] = "entitet.id">
+        {{entitet.name}}<br><span class = "grey"> {{entitet.desc}} </span>
+        <mat-divider></mat-divider>
+      </mat-list-option>
+    </mat-selection-list>
+
+  </mat-card-content>
+  <mat-card-footer >
+    <a mat-stroked-button routerLink="/home" class ="backBtn" color="white">Back</a>
+    <button *ngIf="entitetiLista.selectedOptions.selected.length > 0" id = "connectBtn" mat-raised-button color ="primary" (click) = "connect()" routerLink="/home">CONNECT</button>
+  </mat-card-footer>
+</mat-card>
