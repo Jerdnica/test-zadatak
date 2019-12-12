@@ -1,10 +1,10 @@
-import {Component, OnInit, Renderer2} from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { ENTITETI } from '../entiteti';
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  styleUrls: ['./list.component.scss'],
 })
 export class ListComponent implements OnInit {
   entiteti = ENTITETI;
@@ -22,7 +22,7 @@ export class ListComponent implements OnInit {
   }
   entityConnected(id): boolean {
     let i;
-    for (i = 0; i < this.entiteti.konektovani.length; i++ ) {
+    for (i = 0; i < this.entiteti.konektovani.length; i++) {
       if (this.entiteti.konektovani[i].id === id) {
         console.log('naso');
         return true;
@@ -41,14 +41,16 @@ export class ListComponent implements OnInit {
   filter(): void {
     this.listItems = this.entiteti.entiteti.filter(function(elem) {
       const term = this.searchTerm.toUpperCase();
-      return elem.name.toUpperCase().indexOf(term) >= 0 && this.entityConnected(elem.id) === false;
+      return (
+        elem.name.toUpperCase().indexOf(term) >= 0 &&
+        this.entityConnected(elem.id) === false
+      );
     }, this);
   }
-  constructor(public renderer: Renderer2) { }
+  constructor(public renderer: Renderer2) {}
 
   ngOnInit() {
     this.filter();
     this.renderer.selectRootElement('#myInput').focus();
   }
-
 }
