@@ -13,7 +13,7 @@ import { MatButtonModule } from '@angular/material';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
-import { EntitiesService } from './Entities/entities.service';
+import { EntitiesService } from './entities/entities.service';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, ListComponent],

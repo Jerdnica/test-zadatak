@@ -1,5 +1,5 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
-import { EntitiesService } from '../Entities/entities.service';
+import { EntitiesService } from '../entities/entities.service';
 
 @Component({
   selector: 'app-list',
