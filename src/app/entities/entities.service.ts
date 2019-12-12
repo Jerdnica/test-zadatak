@@ -1,12 +1,25 @@
 import { Injectable } from '@angular/core';
-import { Entities } from './entities';
+import { Entity } from './entity';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EntitiesService {
-  connected = Entities.connected;
-  list = Entities.list;
+  public list: Array<Entity>;
+  public connected: Array<Entity>;
+
+  constructor() {
+    this.list = [
+      { id: 1, name: 'Arrivals', description: 'BPM' },
+      { id: 2, name: 'Car Wash', description: 'BPM' },
+      { id: 3, name: 'Maintenance', description: 'Project' },
+      { id: 4, name: 'Customer Payment', description: 'BPM' },
+      { id: 5, name: 'Arrivals Database', description: 'Database' },
+      { id: 6, name: 'Calculator', description: 'Application' },
+      { id: 7, name: 'California', description: 'Server' },
+    ];
+    this.connected = [];
+  }
 
   disconnect(id: number): void {
     let i;
@@ -16,7 +29,7 @@ export class EntitiesService {
       }
     }
   }
-  getEntity(id: number): object {
+  getEntity(id: number): Entity {
     let i;
     for (i = 0; i < this.list.length; i++) {
       if (this.list[i].id === id) {
@@ -24,11 +37,12 @@ export class EntitiesService {
       }
     }
   }
-  getFilteredEntities(searchTerm) {
+  getFilteredEntities(searchTerm): Array<Entity> {
     return this.list.filter(function(elem) {
       const term = searchTerm.toUpperCase();
       return (
-        this.entityConnected(elem.id) === false && elem.name.toUpperCase().indexOf(term) >= 0
+        this.entityConnected(elem.id) === false &&
+        elem.name.toUpperCase().indexOf(term) >= 0
       );
     }, this);
   }
@@ -42,12 +56,10 @@ export class EntitiesService {
     return false;
   }
   connect(selectedEntities): void {
-    let i = 0;
+    let i;
     for (i = 0; i < selectedEntities.length; i++) {
       const ent = this.getEntity(selectedEntities[i]);
       this.connected.push(ent);
     }
   }
-
-  constructor() {}
 }

@@ -11,7 +11,7 @@
     <mat-selection-list #entityList [(ngModel)]="selectedEntities">
       <mat-list-option *ngFor="let entity of listItems" [value]="entity.id">
         {{ entity.name }}<br /><span class="grey">
-          {{ entity.desc }}
+          {{ entity.description }}
         </span>
         <mat-divider></mat-divider>
       </mat-list-option>
