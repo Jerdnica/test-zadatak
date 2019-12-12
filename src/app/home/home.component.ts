@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ENTITETI } from '../entiteti';
+import { EntitiesService } from '../Entities/entities.service';
 
 @Component({
   selector: 'app-home',
@@ -7,17 +7,7 @@ import { ENTITETI } from '../entiteti';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  konektovaniEntiteti = ENTITETI.konektovani;
-
-  delete(id): void {
-    let i;
-    for (i = 0; i < this.konektovaniEntiteti.length; i++) {
-      if (this.konektovaniEntiteti[i].id === id) {
-        this.konektovaniEntiteti.splice(i, 1);
-      }
-    }
-  }
-  constructor() {}
+  constructor(private entitiesService: EntitiesService) {}
 
   ngOnInit() {}
 }

@@ -1,5 +1,5 @@
-export const ENTITETI = {
-  entiteti: [
+export const Entities = {
+  list: [
     { id: 1, name: 'Arrivals', desc: 'BPM' },
     { id: 2, name: 'Car Wash', desc: 'BPM' },
     { id: 3, name: 'Maintenance', desc: 'Project' },
@@ -8,5 +8,5 @@ export const ENTITETI = {
     { id: 6, name: 'Calculator', desc: 'Application' },
     { id: 7, name: 'California', desc: 'Server' },
   ],
-  konektovani: [],
+  connected: [],
 };

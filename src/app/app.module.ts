@@ -13,6 +13,7 @@ import { MatButtonModule } from '@angular/material';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
+import { EntitiesService } from './Entities/entities.service';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, ListComponent],
@@ -29,7 +30,7 @@ import { FormsModule } from '@angular/forms';
     MatDividerModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [EntitiesService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
