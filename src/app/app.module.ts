@@ -14,6 +14,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { EntitiesService } from './entities/entities.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, ListComponent],
@@ -29,6 +30,7 @@ import { EntitiesService } from './entities/entities.service';
     MatListModule,
     MatDividerModule,
     FormsModule,
+    HttpClientModule
   ],
   providers: [EntitiesService],
   bootstrap: [AppComponent],

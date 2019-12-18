@@ -1,28 +1,28 @@
 <mat-card>
-  <mat-card-content *ngIf="entitiesService.connected?.length === 0">
+  <mat-card-content *ngIf="connectedEntities?.length === 0">
     <button mat-icon-button routerLink="/list">
       <mat-icon>add_circle</mat-icon>
     </button>
     <mat-label>Connect entity </mat-label>
   </mat-card-content>
 
-  <mat-card-content *ngIf="entitiesService.connected?.length > 0">
+  <mat-card-content *ngIf="connectedEntities?.length > 0">
     <button mat-icon-button routerLink="/list">
       <mat-icon>add_circle</mat-icon>
     </button>
     <mat-label>
-      Entities connected ({{ entitiesService.connected.length }})
+      Entities connected ({{ connectedEntities.length }})
     </mat-label>
     <mat-list>
-      <mat-list-item *ngFor="let entitet of entitiesService.connected">
-        <span class="entitetText">
-          {{ entitet.name }} <br />
+      <mat-list-item *ngFor="let entity of connectedEntities">
+        <span class="entityText">
+          {{ entity.name }} <br />
           <span class="grey">
-            {{ entitet.description }}
+            {{ entity.description }}
           </span>
         </span>
         <button
-          (click)="entitiesService.disconnect(entitet.id)"
+          (click)="disconnectEntity(entity.id)"
           class="iconBtn"
           mat-icon-button
         >

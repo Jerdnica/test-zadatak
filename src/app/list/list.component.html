@@ -4,7 +4,7 @@
     <mat-form-field class="example-form-field">
       <!--- I dont know if its okay to call service from html, it's not mentioned in styleguide --->
       <input [(ngModel)]="searchTerm"
-      (ngModelChange)="listItems=entitiesService.getFilteredEntities(searchTerm)"
+      (ngModelChange)="getAvailableEntities()"
       class="searchEntities" id="myInput" matInput placeholder="Search entity"
       />
     </mat-form-field>
@@ -26,7 +26,7 @@
       id="connectBtn"
       mat-raised-button
       color="primary"
-      (click)="entitiesService.connect(selectedEntities)"
+      (click)="connectEntities()"
       routerLink="/home"
     >
       CONNECT
