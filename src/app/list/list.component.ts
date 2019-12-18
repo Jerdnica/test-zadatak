@@ -1,6 +1,7 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { EntitiesService } from '../entities/entities.service';
 import { Entity } from '../entities/entity';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -11,11 +12,17 @@ export class ListComponent implements OnInit {
   searchTerm = '';
   listItems = [];
   selectedEntities = [];
+
   constructor(
     public renderer: Renderer2,
-    private entitiesService: EntitiesService
+    private entitiesService: EntitiesService,
+    private router: Router,
   ) {
     this.getAvailableEntities();
+  }
+
+  ngOnInit() {
+    this.renderer.selectRootElement('#myInput').focus();
   }
 
   getAvailableEntities(): void {
@@ -24,21 +31,23 @@ export class ListComponent implements OnInit {
       .getFilteredEntities(this.searchTerm.toUpperCase())
       .subscribe(value => {
         this.listItems.push(
-          new Entity(value.id, value.name, value.description, value.isConnected)
+          new Entity(value.id, value.name, value.description, value.isConnected),
         );
       });
   }
+
   connectEntities() {
-    for (const entity of this.selectedEntities) {
-      this.entitiesService.getEntity(entity).subscribe(
-        next => {
-          next.isConnected = true;
-          this.entitiesService.putEntity(next).subscribe();
-        }
-      );
-    }
-  }
-  ngOnInit() {
-    this.renderer.selectRootElement('#myInput').focus();
+    this.entitiesService.entitiesForConnecting(this.selectedEntities).subscribe(
+      next => {
+        next.isConnected = true;
+        // u nekim slucajevima ne radi
+        this.entitiesService.putEntity(next).subscribe();
+      },
+      () => {
+      },
+      () => {
+        this.router.navigateByUrl('/home');
+      },
+    );
   }
 }
