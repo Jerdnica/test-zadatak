@@ -43,7 +43,7 @@ export class EntitiesService {
     );
   }
 
-  connectEntities(selectedEntities: number[]): Observable<Entity> {
+  public connectEntities(selectedEntities: number[]): Observable<Entity> {
     // its possible that there is a better solution
     let entitiesToConnectCounter = selectedEntities.length;
     return new Observable(observer => {
