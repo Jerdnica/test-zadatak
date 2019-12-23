@@ -4,43 +4,43 @@
       "id": 1,
       "name": "Arrivals",
       "description": "BPM",
-      "isConnected": false
+      "isConnected": true
     },
     {
       "id": 2,
       "name": "Car Wash",
       "description": "BPM",
-      "isConnected": false
+      "isConnected": true
     },
     {
       "id": 3,
       "name": "Maintenance",
       "description": "Project",
-      "isConnected": false
+      "isConnected": true
     },
     {
       "id": 4,
       "name": "Customer Payment",
       "description": "BPM",
-      "isConnected": false
+      "isConnected": true
     },
     {
       "id": 5,
       "name": "Arrivals Database",
       "description": "Database",
-      "isConnected": false
+      "isConnected": true
     },
     {
       "id": 6,
       "name": "Calculator",
       "description": "Application",
-      "isConnected": false
+      "isConnected": true
     },
     {
       "id": 7,
       "name": "California",
       "description": "Server",
-      "isConnected": false
+      "isConnected": true
     }
   ]
 }
