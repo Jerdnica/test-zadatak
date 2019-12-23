@@ -14,8 +14,7 @@ export class EntitiesService {
   }
 
   public getEntities(): Observable<Entity> {
-    return this.http.get(this.url + '/entities').pipe(
-      // ovdje mi prijavljuje gresku, ali radi
+    return this.http.get<Entity[]>(this.url + '/entities').pipe(
       mergeMap(data => {
         return data;
       }),
