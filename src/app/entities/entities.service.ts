@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Entity } from './entity';
-import { map, mergeMap, filter } from 'rxjs/operators';
+import { mergeMap, filter } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import { from, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -62,7 +62,7 @@ export class EntitiesService {
               () => {
                 entitiesToConnectCounter--;
                 observer.next(next);
-                if(entitiesToConnectCounter === 0) {
+                if (entitiesToConnectCounter === 0) {
                   console.log('complete');
                   observer.complete();
                 }
