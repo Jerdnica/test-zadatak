@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Entity } from './entity';
 import { map, mergeMap, filter } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { from, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -23,14 +23,12 @@ export class EntitiesService {
 
   public getEntity(id: number): Observable<Entity> {
     return this.getEntities().pipe(
-      map(entities => entities),
       filter(entity => entity.id === id),
     );
   }
 
   public getFilteredEntities(searchTerm: string): Observable<Entity> {
     return this.getEntities().pipe(
-      map(entities => entities),
       filter(
         entity =>
           entity.isConnected === false &&
@@ -41,16 +39,38 @@ export class EntitiesService {
 
   public getConnectedEntities(): Observable<Entity> {
     return this.getEntities().pipe(
-      map(entities => entities),
       filter(entity => entity.isConnected === true),
     );
   }
 
-  entitiesForConnecting(selectedEntities: number[]): Observable<Entity> {
-    return this.getEntities().pipe(
-      map(entities => entities),
-      filter(entity => selectedEntities.includes(entity.id)),
-    );
+  connectEntities(selectedEntities: number[]): Observable<Entity> {
+    // its possible that there is a better solution
+    let entitiesToConnectCounter = selectedEntities.length;
+    return new Observable(observer => {
+      this.getEntities()
+        .pipe(
+          filter(entity => selectedEntities.includes(entity.id)),
+        )
+        .subscribe(
+          next => {
+            next.isConnected = true;
+            this.putEntity(next).subscribe(
+              () => {
+              },
+              () => {
+              },
+              () => {
+                entitiesToConnectCounter--;
+                observer.next(next);
+                if(entitiesToConnectCounter === 0) {
+                  console.log('complete');
+                  observer.complete();
+                }
+              },
+            );
+          }
+        );
+    });
   }
 
   public putEntity(entity: Entity): Observable<any> {

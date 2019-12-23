@@ -37,10 +37,9 @@ export class ListComponent implements OnInit {
   }
 
   connectEntities() {
-    this.entitiesService.entitiesForConnecting(this.selectedEntities).subscribe(
+    this.entitiesService.connectEntities(this.selectedEntities).subscribe(
       next => {
         next.isConnected = true;
-        // u nekim slucajevima ne radi
         this.entitiesService.putEntity(next).subscribe();
       },
       () => {

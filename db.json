@@ -16,13 +16,13 @@
       "id": 3,
       "name": "Maintenance",
       "description": "Project",
-      "isConnected": true
+      "isConnected": false
     },
     {
       "id": 4,
       "name": "Customer Payment",
       "description": "BPM",
-      "isConnected": true
+      "isConnected": false
     },
     {
       "id": 5,
